@@ -1,0 +1,26 @@
+nom : Build
+
+sur:
+  pousser:
+    branches :
+      - principal
+
+
+emplois :
+  construire:
+    nom : Build
+    fonctionne sous : ubuntu-latest
+    mesures:
+      - utilise : actions/checkout@v2
+        avec:
+          fetch-depth: 0 # Les clones superficiels devraient être désactivés pour une meilleure pertinence de l'analyse
+      - utilise : sonarsource/sonarqube-scan-action@master
+        environnement :
+          SONAR_TOKEN : ${{ secrets.SONAR_TOKEN }}
+          URL_HÔTE_SONAR : ${{ secrets.SONAR_HOST_URL }}
+      # Si vous souhaitez échouer à votre poste lorsque le niveau de qualité est au rouge, décommentez la ligne suivante :
+      # lignes suivantes. Ceci serait généralement utilisé pour faire échouer un déploiement.
+      # - utilise : sonarsource/sonarqube-quality-gate-action@master
+      # délai d'attente en minutes : 5
+      # environnement :
+      # SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
