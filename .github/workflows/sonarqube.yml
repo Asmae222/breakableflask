@@ -3,7 +3,7 @@ nom : Build
 sur:
   pousser:
     branches :
-      - principal
+      - master
 
 
 emplois :
