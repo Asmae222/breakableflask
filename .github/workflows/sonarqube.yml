@@ -3,6 +3,7 @@ nom : Build
 sur:
   pousser:
     branches :
+      - main
       - master
 
 
